@@ -63,13 +63,10 @@ class ProductProvider extends Component {
     product.count = 1;
     const price = product.price;
     product.total = price;
-    this.setState(
-      {
-        product: tempProduct,
-        cart: product,
-      },
-      () => console.log("new cart", this.state)
-    );
+    this.setState({
+      product: tempProduct,
+      cart: [...this.state.cart, product],
+    });
   };
   increament = (id) => {
     console.log("Increament");
@@ -98,7 +95,7 @@ class ProductProvider extends Component {
           closeModal: this.closeModal,
           increamnet: this.increament,
           decreament: this.decreament,
-          remove: this.removeItem,
+          removeItem: this.removeItem,
           clearItem: this.clearCart,
         }}
       >

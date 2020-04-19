@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Title } from "../Title";
 import { CartColumns } from "./CartColumns";
 import { EmptyCart } from "./EmptyCart";
 import { ProductConsumer } from "../Context";
+import { CartList } from "./CartList";
 class Cart extends Component {
   render() {
     return (
@@ -10,12 +11,14 @@ class Cart extends Component {
         <ProductConsumer>
           {(value) => {
             const { cart } = value;
+            console.log("cart page", cart);
             if (cart.length > 0) {
               return (
-                <>
+                <Fragment>
                   <Title name="your" title="cart" />
                   <CartColumns />
-                </>
+                  <CartList value={value} />
+                </Fragment>
               );
             } else {
               return <EmptyCart />;
